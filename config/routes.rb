@@ -22,8 +22,9 @@ Projet::Application.routes.draw do
   
   # pour le JSon
   post 'devices/:id/connect' => 'devices#connect'
-  post 'devices/:id/turn' => 'devices#turn'
+  patch 'devices/:id/turn' => 'devices#turn'
   post 'devices/:id/add_user' => 'devices#add_user'
+  # patch 'devices/:id/turn' => 'devices#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

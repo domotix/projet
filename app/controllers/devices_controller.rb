@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy, :add_user, :turn]
 
   # On saute une etape de securite si on appelle connect en JSON
-  skip_before_action :verify_authenticity_token, only: [:connect, :add_user, :turn]
+  skip_before_action :verify_authenticity_token, only: [:connect, :add_user, :turn, :update]
 
   # GET /devices
   # GET /devices.json
@@ -65,12 +65,12 @@ class DevicesController < ApplicationController
     end
   end
 
-  # # POST /devices/1/connect.json
+  # POST /devices/1/connect.json
   def connect
-    # On crée un nouvel objet connecting à partir des paramètres reçus
+    # On crée un nouvel objet connection à partir des paramètres reçus
     @connection = Connection.new(connection_params)
-    # On précise que cet object Connecting dépend du device concerné
-    @connection.device.id = @device
+    # On précise que cet objet connection dépend du device concerné
+   # @connection.device_id = device.id
 
     respond_to do |format|
       if @connection.save
@@ -86,9 +86,23 @@ class DevicesController < ApplicationController
 #     self.connections.build(add_user_params)
 #   end
 
-# Turn on/off a device
+# # Turn on/off a device
+#   def turn
+#     device.status = !device.status
+#   end
+
+  # PATCH/PUT /devices/1
+  # PATCH/PUT /devices/1.json
   def turn
-    device.status = !device.status
+    respond_to do |format|
+      if @device.turn(device_params)
+        format.html { redirect_to @device, notice: 'Device was successfully turned on off.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
