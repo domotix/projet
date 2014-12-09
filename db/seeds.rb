@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+  Device.create(
+    name: "MonDevice",
+    status: false
+  )
+
+  Device.create(
+    name: "MonDevice2",
+    status: true
+  )

@@ -69,8 +69,9 @@ class DevicesController < ApplicationController
   def connect
     # On crée un nouvel objet connection à partir des paramètres reçus
     @connection = Connection.new(connection_params)
-    # On précise que cet objet connection dépend du device concerné
-   # @connection.device_id = device.id
+    # On précise l'idée du Device est celle dans les paramètres de l'URL
+    # Sinon on modifie connection_params pour rajouter device_id
+    @connection.device_id = params[:id]
 
     respond_to do |format|
       if @connection.save
@@ -121,6 +122,6 @@ class DevicesController < ApplicationController
     # end
 
     def connection_params
-      params.require(:connect).permit(:user_id, :device_id)
+      params.require(:connect).permit(:user_id)
     end
 end
