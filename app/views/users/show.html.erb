@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<br/>
+<br/>
+<br/>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+  
+  <strong>Devices number:</strong>
+  <%= @user.connections.count %>
+</p>
+
+<h1>Listing devices</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Device_id</th>
+      <th>Status</th>
+      <th></th>
+	  <th></th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.connections.each do |connection| %>
+      <tr>
+	    <td><%= Device.find(connection.device_id).name %></td>
+		<td><%= connection.device_id %></td>
+		<td><%= Device.find(connection.device_id).status %></td>
+		<td><%= link_to 'Show Device', device_path(connection.device_id) %></td>
+        <td><%= link_to 'Edit Device', edit_device_path(connection.device_id) %></td>
+        <td><%= link_to 'Disconnect Device', connection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

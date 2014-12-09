@@ -1,5 +1,15 @@
 Projet::Application.routes.draw do
+  resources :users
+
+  # resources :users do
+  #     member do
+  #     get :connection
+  #   end
+  # end
+
   resources :devices
+
+  resources :connections
 
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,6 +19,11 @@ Projet::Application.routes.draw do
   # root 'welcome#index'
   
   root "home#index"
+  
+  # pour le JSon
+  post 'devices/:id/connect' => 'devices#connect'
+  post 'devices/:id/turn' => 'devices#turn'
+  post 'devices/:id/add_user' => 'devices#add_user'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,13 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112172716) do
+ActiveRecord::Schema.define(version: 20141208210754) do
+
+  create_table "connectings", force: true do |t|
+    t.string   "user_name"
+    t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "connectings", ["device_id"], name: "index_connectings_on_device_id"
+
+  create_table "connections", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "devices", force: true do |t|
     t.string   "name"
-    t.string   "location"
-    t.string   "description"
-    t.integer  "ipaddress"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

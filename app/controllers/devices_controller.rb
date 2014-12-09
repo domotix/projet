@@ -1,5 +1,9 @@
 class DevicesController < ApplicationController
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+    # On ajoute la méthode connect dans la liste des méthodes où on set le device au début
+  before_action :set_device, only: [:show, :edit, :update, :destroy, :add_user, :turn]
+
+  # On saute une etape de securite si on appelle connect en JSON
+  skip_before_action :verify_authenticity_token, only: [:connect, :add_user, :turn]
 
   # GET /devices
   # GET /devices.json
@@ -61,6 +65,32 @@ class DevicesController < ApplicationController
     end
   end
 
+  # # POST /devices/1/connect.json
+  def connect
+    # On crée un nouvel objet connecting à partir des paramètres reçus
+    @connection = Connection.new(connection_params)
+    # On précise que cet object Connecting dépend du device concerné
+    @connection.device.id = @device
+
+    respond_to do |format|
+      if @connection.save
+        format.json
+      else
+        format.json { render json: @connection.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+# # POST /devices/1/add_user.json
+#   def add_user
+#     self.connections.build(add_user_params)
+#   end
+
+# Turn on/off a device
+  def turn
+    device.status = !device.status
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_device
@@ -69,6 +99,14 @@ class DevicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def device_params
-      params.require(:device).permit(:name, :location, :description, :ipaddress)
+      params.require(:device).permit(:name, :status)
+    end
+
+    # def add_user_params
+    #   params.require(:device).permit(:user_id)
+    # end
+
+    def connection_params
+      params.require(:connect).permit(:user_id, :device_id)
     end
 end
