@@ -25,6 +25,6 @@
   )
 
   Connection.create(
-    device_id: 1,
-    user_id: 2
+    device_id: 2,
+    user_id: 3
   )
