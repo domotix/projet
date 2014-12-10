@@ -5,8 +5,8 @@ class CreateConnections < ActiveRecord::Migration
 # this line adds an integer column called `device_id` user_id.
       #t.connections :device, index: true
       #t.connections :user, index: true
-      t.connections :device
-      t.connections :user
+      t.integer :device_id
+      t.integer :user_id
 
       t.timestamps
     end
