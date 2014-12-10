@@ -3,11 +3,12 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-#development:
-#  adapter: sqlite3
-#  database: db/devices_development.sqlite3
-#  pool: 5
-#  timeout: 5000
+development:
+  adapter: sqlite3
+  # host: localhost
+  database: db/devices_development.sqlite3
+  pool: 5
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,12 +27,13 @@
 
 # ---------
 
-development:
-adapter: postgresql
-encoding: unicode
-database: db/users_development.sqlite3
-pool: 5
-timeout: 5000
+#development:
+#adapter: postgresql
+#encoding: unicode
+#database: db/users_development.sqlite3
+#database: domotix_development
+#pool: 5
+#timeout: 5000
 
 #development:
 #adapter: postgresql
@@ -67,7 +69,7 @@ timeout: 5000
 #database: domotix_test
 #pool: 5
 #timeout: 5000
-#
+
 #production:
 #adapter: postgresql
 #encoding: unicode
