@@ -15,3 +15,11 @@
     name: "MonDevice2",
     status: true
   )
+
+  User.create(
+    name: "Laurent2",
+  )
+
+  User.create(
+    name: "Laurent3",
+  )
