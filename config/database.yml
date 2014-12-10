@@ -29,7 +29,7 @@
 development:
 adapter: postgresql
 encoding: unicode
-database: projectname_development
+database: db/devices_development.sqlite3
 pool: 5
 username: kelemonde.aibo@club-internet.fr
 password: xPp?m5R7h
