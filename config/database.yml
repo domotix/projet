@@ -31,8 +31,14 @@ adapter: postgresql
 encoding: unicode
 database: db/devices_development.sqlite3
 pool: 5
-username: kelemonde.aibo@club-internet.fr
-password: xPp?m5R7h
+timeout: 5000
+
+development:
+adapter: postgresql
+encoding: unicode
+database: db/connections_development.sqlite3
+pool: 5
+timeout: 5000
 
 # Connect on a TCP socket. Omitted by default since the client uses a
 # domain socket that doesn't need configuration. Windows does not have
