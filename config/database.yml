@@ -66,13 +66,11 @@ adapter: postgresql
 encoding: unicode
 database: domotix_test
 pool: 5
-username: kelemonde.aibo@club-internet.fr
-password: xPp?m5R7h
+timeout: 5000
 
 production:
 adapter: postgresql
 encoding: unicode
 database: domotix_production
 pool: 5
-username: kelemonde.aibo@club-internet.fr
-password: xPp?m5R7h
+timeout: 5000
