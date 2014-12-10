@@ -82,6 +82,31 @@ class DevicesController < ApplicationController
     end
   end
 
+  # équivalent de update en json pure : pas de réponse html
+  # # PATCH/PUT /devices/1
+  # # PATCH/PUT /devices/1.json
+  # def turn
+  #   respond_to do |format|
+  #     if @device.update(device_params)
+  #       format.json
+  #     else
+  #       format.json { render json: @device.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+    # PATCH/PUT /devices/1
+  # PATCH/PUT /devices/1.json
+  def turn
+    respond_to do |format|
+      if @device.update(device_params)
+        format.json
+      else
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 # # POST /devices/1/add_user.json
 #   def add_user
 #     self.connections.build(add_user_params)
@@ -91,20 +116,6 @@ class DevicesController < ApplicationController
 #   def turn
 #     device.status = !device.status
 #   end
-
-  # PATCH/PUT /devices/1
-  # PATCH/PUT /devices/1.json
-  def turn
-    respond_to do |format|
-      if @device.turn(device_params)
-        format.html { redirect_to @device, notice: 'Device was successfully turned on off.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

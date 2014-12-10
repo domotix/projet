@@ -24,7 +24,8 @@ Projet::Application.routes.draw do
   post 'devices/:id/connect' => 'devices#connect'
   patch 'devices/:id/turn' => 'devices#turn'
   post 'devices/:id/add_user' => 'devices#add_user'
-  # patch 'devices/:id/turn' => 'devices#update'
+  put 'devices/:id/update' => 'devices#update'
+  patch 'devices/:id/update' => 'devices#update'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
