@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+		<th>Connection ID</th>
 	  <th>User_name</th>
       <th>User_id</th>
       <th>Device_id</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @connections.each do |connection| %>
       <tr>
+		<td><%= connection.id %></td>
 		<td><%= User.find(connection.user_id).name %></td>
 		<td><%= connection.user_id %></td>
 		<td><%= connection.device_id %></td>

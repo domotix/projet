@@ -29,6 +29,7 @@
 	    <td><%= Device.find(connection.device_id).name %></td>
 		<td><%= connection.device_id %></td>
 		<td><%= Device.find(connection.device_id).status %></td>
+		<td><%=link_to "ON/OFF", turn2_path(Device.find(connection.device_id)), :method => 'PATCH' %>
 		<td><%= link_to 'Show Device', device_path(connection.device_id) %></td>
         <td><%= link_to 'Edit Device', edit_device_path(connection.device_id) %></td>
         <td><%= link_to 'Disconnect Device', connection, method: :delete, data: { confirm: 'Are you sure?' } %></td>

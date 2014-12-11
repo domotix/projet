@@ -95,12 +95,16 @@ class DevicesController < ApplicationController
   end
 
   def turn2
-    @device.update_attributes(status: params[:status])
+    @device.update_attribute(:status, !@device.status)
 
-    respond_to do |format|
-    flash[:notice] = "Device has been modified!"
-    redirect_to @device
+    if @device.status
+         flash[:notice] = "Device has been turned on!"
+      else
+         flash[:notice] = "Device has been turned off!"
     end
+
+    redirect_to :back
+    
   end
 
   private
