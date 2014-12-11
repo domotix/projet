@@ -1,9 +1,9 @@
 class DevicesController < ApplicationController
     # On ajoute la méthode connect dans la liste des méthodes où on set le device au début
-  before_action :set_device, only: [:show, :edit, :update, :destroy, :add_user, :turn]
+  before_action :set_device, only: [:show, :edit, :update, :destroy, :add_user, :turn, :turn2]
 
   # On saute une etape de securite si on appelle connect en JSON
-  skip_before_action :verify_authenticity_token, only: [:connect, :add_user, :turn, :update]
+  skip_before_action :verify_authenticity_token, only: [:connect, :add_user, :turn, :update, :turn2]
 
   # GET /devices
   # GET /devices.json
@@ -82,19 +82,6 @@ class DevicesController < ApplicationController
     end
   end
 
-  # équivalent de update en json pure : pas de réponse html
-  # # PATCH/PUT /devices/1
-  # # PATCH/PUT /devices/1.json
-  # def turn
-  #   respond_to do |format|
-  #     if @device.update(device_params)
-  #       format.json
-  #     else
-  #       format.json { render json: @device.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
     # PATCH/PUT /devices/1
   # PATCH/PUT /devices/1.json
   def turn
@@ -107,15 +94,14 @@ class DevicesController < ApplicationController
     end
   end
 
-# # POST /devices/1/add_user.json
-#   def add_user
-#     self.connections.build(add_user_params)
-#   end
+  def turn2
+    @device.update_attributes(status: params[:status])
 
-# # Turn on/off a device
-#   def turn
-#     device.status = !device.status
-#   end
+    respond_to do |format|
+    flash[:notice] = "Device has been modified!"
+    redirect_to @device
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
