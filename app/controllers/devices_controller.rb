@@ -8,7 +8,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all(:order => 'id DESC')
+    @devices = Device.all(:order => 'id ASC')
   end
 
   # GET /devices/1
