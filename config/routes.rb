@@ -22,10 +22,10 @@ Projet::Application.routes.draw do
   
   # pour le JSon
   post 'devices/:id/connect' => 'devices#connect'
-#  patch 'devices/:id/turn' => 'devices#turn'
+  patch 'devices/:id/turn' => 'devices#turn'
   post 'devices/:id/add_user' => 'devices#add_user'
   put 'devices/:id/update' => 'devices#update'
-  patch 'devices/:id/update' => 'devices#update'
+  patch 'devices/:id/update' => 'devices#update', :as => 'update_device'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
