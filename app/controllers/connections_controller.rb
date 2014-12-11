@@ -8,7 +8,7 @@ class ConnectionsController < ApplicationController
   # GET /connections
   # GET /connections.json
   def index
-    @connections = Connection.all
+    @connections = Connection.all(:order => 'id DESC')
   end
 
   # GET /connections/1
